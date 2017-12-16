@@ -1,0 +1,27 @@
+{
+    "name": "stratadox/sorting",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stratadox",
+            "homepage": "http://www.stratadox.com/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Stratadox\\Sorting\\": ["src", "contracts"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Stratadox\\Sorting\\Test\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "rpkamp/fancy-testdox-printer": "^0.1.1"
+    }
+}
