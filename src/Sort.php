@@ -41,7 +41,7 @@ final class Sort implements DefinesHowToSort
         return $this->field;
     }
 
-    public function next() : ?DefinesHowToSort
+    public function next() : DefinesHowToSort
     {
         return $this->next;
     }
@@ -49,5 +49,10 @@ final class Sort implements DefinesHowToSort
     public function ascends() : bool
     {
         return $this->ascends;
+    }
+
+    public function isRequired() : bool
+    {
+        return true;
     }
 }
