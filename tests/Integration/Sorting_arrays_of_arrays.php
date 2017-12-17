@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace Stratadox\Sorting\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
+use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\Sort;
 use Stratadox\Sorting\DefinesHowToSort;
+use Stratadox\Sorting\SortsTheElements;
 
 /**
  * @coversNothing because integration
  */
-class Sorting_tables_based_on_one_or_more_keys extends TestCase
+class Sorting_arrays_of_arrays extends TestCase
 {
+    /** @var SortsTheElements */
+    private $sorter;
+
     /** @scenario */
     function sort_ascending_by_the_index_key()
     {
@@ -73,20 +78,16 @@ class Sorting_tables_based_on_one_or_more_keys extends TestCase
         ], $sorted);
     }
 
-    private function sortThe(array $table, DefinesHowToSort $sorting) : array
+    private function sortThe(
+        array $table,
+        DefinesHowToSort $usingThisDefinition
+    ) : array
     {
-        usort($table, function (array $row1, array $row2) use ($sorting) {
-            while ($sorting->isRequired()) {
-                if ($row1[$sorting->field()] > $row2[$sorting->field()]) {
-                    return $sorting->ascends() ? 1 : -1;
-                }
-                if ($row1[$sorting->field()] < $row2[$sorting->field()]) {
-                    return $sorting->ascends() ? -1 : 1;
-                }
-                $sorting = $sorting->next();
-            }
-            return 0;
-        });
-        return $table;
+        return $this->sorter->sortThe($table, $usingThisDefinition);
+    }
+
+    protected function setUp()
+    {
+        $this->sorter = new ArraySorter;
     }
 }
