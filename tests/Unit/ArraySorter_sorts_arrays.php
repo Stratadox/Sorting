@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
-use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\DefinesHowToSort;
+use Stratadox\Sorting\Test\SortMockingTest;
 
 /**
  * @covers \Stratadox\Sorting\ArraySorter
  */
-class ArraySorter_sorts_arrays extends TestCase
+class ArraySorter_sorts_arrays extends SortMockingTest
 {
     /**
      * @scenario
@@ -50,38 +48,9 @@ class ArraySorter_sorts_arrays extends TestCase
             ],
             'Sorting by index' => [
                 $unsorted,
-                $this->sortByIndex(),
+                $this->sortBy('index'),
                 $sorted
             ],
         ];
-    }
-
-    /**
-     * @return MockObject|DefinesHowToSort
-     */
-    private function noSort() : DefinesHowToSort
-    {
-        $noSort = $this->createMock(DefinesHowToSort::class);
-        $this->mocked($noSort->expects($this->atLeastOnce()), 'isRequired', false);
-        return $noSort;
-    }
-
-    /**
-     * @return MockObject|DefinesHowToSort
-     */
-    private function sortByIndex() : DefinesHowToSort
-    {
-        $sort = $this->createMock(DefinesHowToSort::class);
-        $this->mocked($sort->expects($this->atLeastOnce()), 'isRequired', true);
-        $this->mocked($sort->expects($this->atLeastOnce()), 'field', 'index');
-        $this->mocked($sort->expects($this->atLeastOnce()), 'ascends', true);
-        $this->mocked($sort->expects($this->atLeastOnce()), 'next', $this->noSort());
-        return $sort;
-    }
-
-    private function mocked(InvocationMocker $mocker, string $name, $returnValue) : void
-    {
-        $mocker->method($name);
-        $mocker->willReturn($returnValue);
     }
 }
