@@ -7,7 +7,6 @@ namespace Stratadox\Sorting\Test\Integration;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\Sort;
-use Stratadox\Sorting\DefinesHowToSort;
 use Stratadox\Sorting\SortsTheElements;
 
 /**
@@ -27,7 +26,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['index' => 1, 'value' => 'one'],
             ['index' => 0, 'value' => 'zero'],
         ];
-        $sorted = $this->sortThe($table, Sort::ascendingBy('index'));
+        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('index'));
         $this->assertSame([
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'one'],
@@ -46,7 +45,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sortThe($table,
+        $sorted = $this->sorter->sortThe($table,
             Sort::descendingBy('rating', Sort::ascendingBy('name'))
         );
         $this->assertSame([
@@ -68,7 +67,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'another one'],
         ];
-        $sorted = $this->sortThe($table, Sort::ascendingBy('index'));
+        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('index'));
         $this->assertSame([
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'one'],
@@ -76,14 +75,6 @@ class Sorting_arrays_of_arrays extends TestCase
             ['index' => 2, 'value' => 'two'],
             ['index' => 4, 'value' => 'four'],
         ], $sorted);
-    }
-
-    private function sortThe(
-        array $table,
-        DefinesHowToSort $usingThisDefinition
-    ) : array
-    {
-        return $this->sorter->sortThe($table, $usingThisDefinition);
     }
 
     protected function setUp()
