@@ -7,6 +7,7 @@ namespace Stratadox\Sorting;
 interface DefinesHowToSort
 {
     public function field() : string;
-    public function next() : ?DefinesHowToSort;
+    public function next() : DefinesHowToSort;
     public function ascends() : bool;
+    public function isRequired() : bool;
 }
