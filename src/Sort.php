@@ -13,7 +13,7 @@ final class Sort implements DefinesHowToSort
     private function __construct(
         string $field,
         bool $ascends,
-        DefinesHowToSort $next = null
+        DefinesHowToSort $next
     ) {
         $this->field = $field;
         $this->ascends = $ascends;
@@ -25,7 +25,7 @@ final class Sort implements DefinesHowToSort
         DefinesHowToSort $next = null
     ) : DefinesHowToSort
     {
-        return new Sort($field, false, $next);
+        return new Sort($field, false, $next ?: DoNotSort::atAll());
     }
 
     public static function ascendingBy(
@@ -33,7 +33,7 @@ final class Sort implements DefinesHowToSort
         DefinesHowToSort $next = null
     ) : DefinesHowToSort
     {
-        return new Sort($field, true, $next);
+        return new Sort($field, true, $next ?: DoNotSort::atAll());
     }
 
     public function field() : string
