@@ -57,7 +57,7 @@ class Sort_tables_based_on_one_or_more_keys extends TestCase
     private function sortThe(array $table, DefinesHowToSort $sorting) : array
     {
         usort($table, function (array $row1, array $row2) use ($sorting) {
-            while ($sorting) {
+            while ($sorting->isRequired()) {
                 if ($row1[$sorting->field()] > $row2[$sorting->field()]) {
                     return $sorting->ascends() ? 1 : -1;
                 }
