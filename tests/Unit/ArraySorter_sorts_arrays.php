@@ -10,6 +10,7 @@ use Stratadox\Sorting\Test\SortMockingTest;
 
 /**
  * @covers \Stratadox\Sorting\ArraySorter
+ * @covers \Stratadox\Sorting\Sorter
  */
 class ArraySorter_sorts_arrays extends SortMockingTest
 {

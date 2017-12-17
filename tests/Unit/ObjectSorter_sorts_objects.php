@@ -10,6 +10,7 @@ use Stratadox\Sorting\Test\Unit\Stub\Thing;
 
 /**
  * @covers \Stratadox\Sorting\ObjectSorter
+ * @covers \Stratadox\Sorting\Sorter
  */
 class ObjectSorter_sorts_objects extends SortMockingTest
 {
