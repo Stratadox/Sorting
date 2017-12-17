@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Stratadox\Sorting\Test\Unit;
+namespace Stratadox\Sorting\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\Sort;
 use Stratadox\Sorting\DefinesHowToSort;
 
 /**
- * @covers \Stratadox\Sorting\Sort
+ * @coversNothing because integration
  */
-class Sort_tables_based_on_one_or_more_keys extends TestCase
+class Sorting_tables_based_on_one_or_more_keys extends TestCase
 {
     /** @scenario */
     function sort_ascending_by_the_index_key()
