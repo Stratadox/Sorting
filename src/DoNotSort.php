@@ -6,6 +6,10 @@ namespace Stratadox\Sorting;
 
 final class DoNotSort implements DefinesHowToSort
 {
+    private function __construct()
+    {
+    }
+
     public static function atAll() : DefinesHowToSort
     {
         return new DoNotSort;
