@@ -31,7 +31,6 @@ class Sort_tables_based_on_one_or_more_keys extends TestCase
         ], $sorted);
     }
 
-
     /** @scenario */
     function sort_descending_by_rating_and_then_ascending_by_name()
     {
@@ -51,6 +50,26 @@ class Sort_tables_based_on_one_or_more_keys extends TestCase
             ['rating' => 2, 'name' => 'Foo'],
             ['rating' => 2, 'name' => 'Quz'],
             ['rating' => 1, 'name' => 'Qux'],
+        ], $sorted);
+    }
+
+    /** @scenario */
+    function sorting_leaves_undecided_entries_in_their_original_order()
+    {
+        $table = [
+            ['index' => 2, 'value' => 'two'],
+            ['index' => 4, 'value' => 'four'],
+            ['index' => 1, 'value' => 'one'],
+            ['index' => 0, 'value' => 'zero'],
+            ['index' => 1, 'value' => 'another one'],
+        ];
+        $sorted = $this->sortThe($table, Sort::ascendingBy('index'));
+        $this->assertSame([
+            ['index' => 0, 'value' => 'zero'],
+            ['index' => 1, 'value' => 'one'],
+            ['index' => 1, 'value' => 'another one'],
+            ['index' => 2, 'value' => 'two'],
+            ['index' => 4, 'value' => 'four'],
         ], $sorted);
     }
 
