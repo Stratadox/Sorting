@@ -2,6 +2,12 @@
 
 namespace Stratadox\Sorting;
 
+/**
+ * Sorts the elements of a collection.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 interface SortsTheElements
 {
     /**

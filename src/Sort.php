@@ -4,6 +4,15 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
+/**
+ * Sort according to this definition.
+ *
+ * Contains the field, the sorting direction and the sorting definition for
+ * unresolved elements.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 final class Sort implements DefinesHowToSort
 {
     private $field;

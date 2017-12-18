@@ -6,6 +6,15 @@ namespace Stratadox\Sorting;
 
 use function call_user_func;
 
+/**
+ * Sorts a collection of objects, accessing fields through public methods.
+ *
+ * The object sorter accepts a map of fields that do not directly correspond to
+ * method names.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 class ObjectSorter extends Sorter
 {
     private $methodNameFor;

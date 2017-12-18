@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
+/**
+ * Defines how to sort the collection of items.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 interface DefinesHowToSort
 {
     /**

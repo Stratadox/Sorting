@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
+/**
+ * Do not sort at all.
+ *
+ * Null object, used to define that no sorting should take place.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 final class DoNotSort implements DefinesHowToSort
 {
     private function __construct()
