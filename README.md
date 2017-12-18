@@ -1,7 +1,7 @@
 # Sorting
 
-(Build)
-(Coverage)
+[![Build Status](https://travis-ci.org/Stratadox/Sorting.svg?branch=master)](https://travis-ci.org/Stratadox/Sorting)
+[![Coverage Status](https://coveralls.io/repos/github/Stratadox/Sorting/badge.svg?branch=master)](https://coveralls.io/github/Stratadox/Sorting?branch=master)
 
 The sorting package contains tools to sort data structures like tables or collections of objects.
 
