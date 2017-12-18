@@ -36,7 +36,7 @@ $objects = [
     new SomeObject('Baz', 2),
 ];
 $sorter = new ObjectSorter;
-$objects = $sorter->sortThe($objects, Sort::descendingBy('rating'));
+$objects = $sorter->sortThe($objects, Sort::ascendingBy('rating'));
 ```
 
 ## Sorting by multiple fields
