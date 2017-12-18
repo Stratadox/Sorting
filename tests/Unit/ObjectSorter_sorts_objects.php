@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use Stratadox\Sorting\DefinesHowToSort;
 use Stratadox\Sorting\ObjectSorter;
-use Stratadox\Sorting\Test\SortMockingTest;
 use Stratadox\Sorting\Test\Stub\Thing;
 
 /**
  * @covers \Stratadox\Sorting\ObjectSorter
  * @covers \Stratadox\Sorting\Sorter
  */
-class ObjectSorter_sorts_objects extends SortMockingTest
+class ObjectSorter_sorts_objects extends TestCase
 {
     /** @scenario */
     function sorting_Things_by_foo()
@@ -56,5 +58,21 @@ class ObjectSorter_sorts_objects extends SortMockingTest
             ],
             $sortedThings
         );
+    }
+
+    /**
+     * @param string $field
+     * @return MockObject|DefinesHowToSort
+     */
+    protected function sortBy(string $field) : DefinesHowToSort
+    {
+        return $this->createConfiguredMock(DefinesHowToSort::class, [
+            'isRequired' => true,
+            'field' => $field,
+            'ascends' => true,
+            'next' => $this->createConfiguredMock(DefinesHowToSort::class, [
+                'isRequired' => false
+            ]),
+        ]);
     }
 }

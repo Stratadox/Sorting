@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\DefinesHowToSort;
-use Stratadox\Sorting\Test\SortMockingTest;
 
 /**
  * @covers \Stratadox\Sorting\ArraySorter
  * @covers \Stratadox\Sorting\Sorter
  */
-class ArraySorter_sorts_arrays extends SortMockingTest
+class ArraySorter_sorts_arrays extends TestCase
 {
     /**
      * @scenario
@@ -49,9 +50,32 @@ class ArraySorter_sorts_arrays extends SortMockingTest
             ],
             'Sorting by index' => [
                 $unsorted,
-                $this->sortBy('index'),
+                $this->doSort(),
                 $sorted
             ],
         ];
+    }
+
+    /**
+     * @return MockObject|DefinesHowToSort
+     */
+    protected function noSort() : DefinesHowToSort
+    {
+        return $this->createConfiguredMock(DefinesHowToSort::class, [
+            'isRequired' => false
+        ]);
+    }
+
+    /**
+     * @return MockObject|DefinesHowToSort
+     */
+    protected function doSort() : DefinesHowToSort
+    {
+        return $this->createConfiguredMock(DefinesHowToSort::class, [
+            'isRequired' => true,
+            'field' => 'index',
+            'ascends' => true,
+            'next' => $this->noSort(),
+        ]);
     }
 }
