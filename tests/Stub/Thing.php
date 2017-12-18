@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stratadox\Sorting\Test\Unit\Stub;
+namespace Stratadox\Sorting\Test\Stub;
 
 class Thing
 {

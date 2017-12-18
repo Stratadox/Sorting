@@ -6,7 +6,7 @@ namespace Stratadox\Sorting\Test\Unit;
 
 use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Test\SortMockingTest;
-use Stratadox\Sorting\Test\Unit\Stub\Thing;
+use Stratadox\Sorting\Test\Stub\Thing;
 
 /**
  * @covers \Stratadox\Sorting\ObjectSorter
