@@ -6,6 +6,14 @@ namespace Stratadox\Sorting;
 
 use Closure;
 
+/**
+ * Sorter logic for comparing multiple values according to the sort definition.
+ *
+ * Leaves retrieving the values to the concrete implementations.
+ *
+ * @author Stratadox
+ * @package Stratadox\Sorting
+ */
 abstract class Sorter implements SortsTheElements
 {
     public function sortThe($elements, DefinesHowToSort $sorting) : array
