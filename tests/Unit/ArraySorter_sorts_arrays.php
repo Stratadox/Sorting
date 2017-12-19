@@ -16,6 +16,10 @@ use Stratadox\Sorting\DefinesHowToSort;
 class ArraySorter_sorts_arrays extends TestCase
 {
     /**
+     * @param array[]          $arrays
+     * @param DefinesHowToSort $usingThisDefinition
+     * @param array[]          $expectedResult
+     *
      * @scenario
      * @dataProvider sortingData
      */
@@ -36,11 +40,17 @@ class ArraySorter_sorts_arrays extends TestCase
             ['index' => 1, 'label' => 'baz'],
             ['index' => 2, 'label' => 'foo'],
         ];
-        $sorted = [
+        $ascending = [
             ['index' => 1, 'label' => 'baz'],
             ['index' => 2, 'label' => 'qux'],
             ['index' => 2, 'label' => 'foo'],
             ['index' => 3, 'label' => 'bar'],
+        ];
+        $descending = [
+            ['index' => 3, 'label' => 'bar'],
+            ['index' => 2, 'label' => 'qux'],
+            ['index' => 2, 'label' => 'foo'],
+            ['index' => 1, 'label' => 'baz'],
         ];
         return [
             'Not expecting any sorting' => [
@@ -48,10 +58,15 @@ class ArraySorter_sorts_arrays extends TestCase
                 $this->noSort(),
                 $unsorted
             ],
-            'Sorting by index' => [
+            'Ascending by index' => [
                 $unsorted,
-                $this->doSort(),
-                $sorted
+                $this->doSort(true),
+                $ascending
+            ],
+            'Descending by index' => [
+                $unsorted,
+                $this->doSort(false),
+                $descending
             ],
         ];
     }
@@ -67,14 +82,15 @@ class ArraySorter_sorts_arrays extends TestCase
     }
 
     /**
+     * @param bool $ascending
      * @return MockObject|DefinesHowToSort
      */
-    protected function doSort() : DefinesHowToSort
+    protected function doSort(bool $ascending) : DefinesHowToSort
     {
         return $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => true,
             'field' => 'index',
-            'ascends' => true,
+            'ascends' => $ascending,
             'next' => $this->noSort(),
         ]);
     }
