@@ -27,18 +27,38 @@ abstract class Sorter implements SortsTheElements
         DefinesHowToSort $sorting
     ) : int
     {
+        $comparison = 0;
         while ($sorting->isRequired()) {
-            $value1 = $this->valueFor($element1, $sorting->field());
-            $value2 = $this->valueFor($element2, $sorting->field());
-            if ($value1 > $value2) {
-                return $sorting->ascends() ? 1 : -1;
-            }
-            if ($value1 < $value2) {
-                return $sorting->ascends() ? -1 : 1;
+            $comparison = $this->compareElements($element1, $element2, $sorting);
+            if ($comparison !== 0) {
+                break;
             }
             $sorting = $sorting->next();
         }
-        return 0;
+        return $comparison;
+    }
+
+    private function compareElements(
+        $element1,
+        $element2,
+        DefinesHowToSort $sorting
+    ) : int
+    {
+        if ($sorting->ascends()) {
+            return $this->compareValues(
+                $this->valueFor($element1, $sorting->field()),
+                $this->valueFor($element2, $sorting->field())
+            );
+        }
+        return $this->compareValues(
+            $this->valueFor($element2, $sorting->field()),
+            $this->valueFor($element1, $sorting->field())
+        );
+    }
+
+    private function compareValues($value1, $value2) : int
+    {
+        return $value1 <=> $value2;
     }
 
     abstract protected function valueFor($element, string $field);
