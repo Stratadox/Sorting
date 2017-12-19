@@ -9,8 +9,7 @@ use function call_user_func;
 /**
  * Sorts a collection of objects, accessing fields through public methods.
  *
- * The object sorter accepts a map of fields that do not directly correspond to
- * method names.
+ * The object sorter accepts an optional map to translate fields to method names.
  *
  * @author Stratadox
  * @package Stratadox\Sorting
