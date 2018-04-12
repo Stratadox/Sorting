@@ -19,11 +19,11 @@ abstract class Sorter implements SortsTheElements
 {
     public function sortThe($elements, DefinesHowToSort $sorting): array
     {
-        usort($elements, $this->function($sorting));
+        usort($elements, $this->functionFor($sorting));
         return $elements;
     }
 
-    private function function (DefinesHowToSort $sorting): Closure
+    private function functionFor(DefinesHowToSort $sorting): Closure
     {
         return function ($element1, $element2) use ($sorting) {
             return $this->doTheSorting($element1, $element2, $sorting);
@@ -37,7 +37,11 @@ abstract class Sorter implements SortsTheElements
     ): int {
         $comparison = 0;
         while ($sorting->isRequired()) {
-            $comparison = $this->compareElements($element1, $element2, $sorting);
+            $comparison = $this->compareElements(
+                $element1,
+                $element2,
+                $sorting
+            );
             if ($comparison !== 0) {
                 break;
             }
