@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
+use Stratadox\Sorting\Contracts\DefinesHowToSort;
+
 /**
  * Do not sort at all.
  *

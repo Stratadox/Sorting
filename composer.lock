@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6f3c25881eb1b8a1ec2351bef1a0bbe",
-    "packages": [],
+    "content-hash": "d249d9a5f9be50264cb1d39ee4c71f11",
+    "packages": [
+        {
+            "name": "stratadox/sorting-contracts",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/SortingContracts.git",
+                "reference": "e575b6dc8d9f513d084df741bd0c15bccc9b3720"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/SortingContracts/zipball/e575b6dc8d9f513d084df741bd0c15bccc9b3720",
+                "reference": "e575b6dc8d9f513d084df741bd0c15bccc9b3720",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Sorting\\Contracts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "time": "2018-04-12T20:45:51+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",

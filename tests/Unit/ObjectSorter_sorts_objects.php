@@ -6,7 +6,7 @@ namespace Stratadox\Sorting\Test\Unit;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Stratadox\Sorting\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\DefinesHowToSort;
 use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Test\Stub\Thing;
 

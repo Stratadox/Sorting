@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Stratadox\Sorting;
 
 use Closure;
+use Stratadox\Sorting\Contracts\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\SortsTheElements;
 
 /**
  * Sorter logic for comparing multiple values according to the sort definition.

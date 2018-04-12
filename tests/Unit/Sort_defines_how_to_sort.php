@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Stratadox\Sorting\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Stratadox\Sorting\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\DefinesHowToSort;
 use Stratadox\Sorting\Sort;
 
 /**

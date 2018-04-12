@@ -7,7 +7,7 @@ namespace Stratadox\Sorting\Test\Unit;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
-use Stratadox\Sorting\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\DefinesHowToSort;
 
 /**
  * @covers \Stratadox\Sorting\ArraySorter
