@@ -16,7 +16,7 @@ use Stratadox\Sorting\Test\Stub\Thing;
  */
 class ObjectSorter_sorts_objects extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function sorting_Things_by_foo()
     {
         $sorter = new ObjectSorter;
@@ -38,7 +38,7 @@ class ObjectSorter_sorts_objects extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_Things_by_bar_via_getBar()
     {
         $sorter = new ObjectSorter(['bar' => 'getBar']);

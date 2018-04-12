@@ -20,7 +20,7 @@ class ArraySorter_sorts_arrays extends TestCase
      * @param DefinesHowToSort $usingThisDefinition
      * @param array[]          $expectedResult
      *
-     * @scenario
+     * @test
      * @dataProvider sortingData
      */
     function sorting_the_arrays(

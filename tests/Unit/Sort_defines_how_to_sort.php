@@ -13,35 +13,35 @@ use Stratadox\Sorting\Sort;
  */
 class Sort_defines_how_to_sort extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function sorting_can_ascend()
     {
         $sorting = Sort::ascendingBy('foo');
         $this->assertTrue($sorting->ascends());
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_can_descend()
     {
         $sorting = Sort::descendingBy('bar');
         $this->assertFalse($sorting->ascends());
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_is_required()
     {
         $sorting = Sort::descendingBy('bar');
         $this->assertTrue($sorting->isRequired());
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_involves_a_field()
     {
         $sorting = Sort::descendingBy('foo');
         $this->assertSame('foo', $sorting->field());
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_can_involve_multiple_fields()
     {
         $sorting = Sort::descendingBy('foo', Sort::ascendingBy('bar'));

@@ -17,7 +17,7 @@ class Sorting_arrays_of_arrays extends TestCase
     /** @var SortsTheElements */
     private $sorter;
 
-    /** @scenario */
+    /** @test */
     function sort_ascending_by_the_index_key()
     {
         $table = [
@@ -35,7 +35,7 @@ class Sorting_arrays_of_arrays extends TestCase
         ], $sorted);
     }
 
-    /** @scenario */
+    /** @test */
     function sort_descending_by_rating_and_then_ascending_by_name()
     {
         $table = [
@@ -57,7 +57,7 @@ class Sorting_arrays_of_arrays extends TestCase
         ], $sorted);
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_leaves_undecided_entries_in_their_original_order()
     {
         $table = [

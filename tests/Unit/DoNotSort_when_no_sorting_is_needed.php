@@ -12,28 +12,28 @@ use Stratadox\Sorting\DoNotSort;
  */
 class DoNotSort_when_no_sorting_is_needed extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function sorting_is_not_required()
     {
         $sorting = DoNotSort::atAll();
         $this->assertFalse($sorting->isRequired());
     }
 
-    /** @scenario */
+    /** @test */
     function not_sorting_has_no_field_data()
     {
         $sorting = DoNotSort::atAll();
         $this->assertSame('', $sorting->field());
     }
 
-    /** @scenario */
+    /** @test */
     function not_sorting_does_not_ascend()
     {
         $sorting = DoNotSort::atAll();
         $this->assertFalse($sorting->ascends());
     }
 
-    /** @scenario */
+    /** @test */
     function DoNotSort_has_no_next_sorting_step()
     {
         $sorting = DoNotSort::atAll();

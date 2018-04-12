@@ -18,7 +18,7 @@ class Sorting_arrays_of_Things extends TestCase
     /** @var SortsTheElements */
     private $sorter;
 
-    /** @scenario */
+    /** @test */
     function sort_ascending_by_foo()
     {
         $table = [
@@ -36,7 +36,7 @@ class Sorting_arrays_of_Things extends TestCase
         ], $sorted);
     }
 
-    /** @scenario */
+    /** @test */
     function sort_descending_by_foo_and_then_ascending_by_bar()
     {
         $table = [
@@ -58,7 +58,7 @@ class Sorting_arrays_of_Things extends TestCase
         ], $sorted);
     }
 
-    /** @scenario */
+    /** @test */
     function sorting_leaves_undecided_entries_in_their_original_order()
     {
         $table = [
