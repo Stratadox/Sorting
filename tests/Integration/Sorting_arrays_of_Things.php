@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Stratadox\Sorting\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
+use Stratadox\Sorting\Contracts\SortsTheElements;
 use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Sort;
-use Stratadox\Sorting\SortsTheElements;
 use Stratadox\Sorting\Test\Stub\Thing;
 
 /**
