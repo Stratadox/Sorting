@@ -32,7 +32,7 @@ class ArraySorter_sorts_arrays extends TestCase
         $this->assertEquals($expectedResult, $actual);
     }
 
-    public function sortingData() : array
+    public function sortingData(): array
     {
         $unsorted = [
             ['index' => 3, 'label' => 'bar'],
@@ -58,12 +58,12 @@ class ArraySorter_sorts_arrays extends TestCase
                 $this->noSort(),
                 $unsorted
             ],
-            'Ascending by index' => [
+            'Ascending by index'        => [
                 $unsorted,
                 $this->doSort(true),
                 $ascending
             ],
-            'Descending by index' => [
+            'Descending by index'       => [
                 $unsorted,
                 $this->doSort(false),
                 $descending
@@ -74,7 +74,7 @@ class ArraySorter_sorts_arrays extends TestCase
     /**
      * @return MockObject|DefinesHowToSort
      */
-    protected function noSort() : DefinesHowToSort
+    protected function noSort(): DefinesHowToSort
     {
         return $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => false
@@ -85,13 +85,13 @@ class ArraySorter_sorts_arrays extends TestCase
      * @param bool $ascending
      * @return MockObject|DefinesHowToSort
      */
-    protected function doSort(bool $ascending) : DefinesHowToSort
+    protected function doSort(bool $ascending): DefinesHowToSort
     {
         return $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => true,
-            'field' => 'index',
-            'ascends' => $ascending,
-            'next' => $this->noSort(),
+            'field'      => 'index',
+            'ascends'    => $ascending,
+            'next'       => $this->noSort(),
         ]);
     }
 }

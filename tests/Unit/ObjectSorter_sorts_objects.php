@@ -64,13 +64,13 @@ class ObjectSorter_sorts_objects extends TestCase
      * @param string $field
      * @return MockObject|DefinesHowToSort
      */
-    protected function sortBy(string $field) : DefinesHowToSort
+    protected function sortBy(string $field): DefinesHowToSort
     {
         return $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => true,
-            'field' => $field,
-            'ascends' => true,
-            'next' => $this->createConfiguredMock(DefinesHowToSort::class, [
+            'field'      => $field,
+            'ascends'    => true,
+            'next'       => $this->createConfiguredMock(DefinesHowToSort::class, [
                 'isRequired' => false
             ]),
         ]);

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting;
@@ -12,7 +11,7 @@ use Stratadox\Sorting\Contracts\DefinesHowToSort;
  * Contains the field, the sorting direction and the sorting definition for
  * unresolved elements.
  *
- * @author Stratadox
+ * @author  Stratadox
  * @package Stratadox\Sorting
  */
 final class Sort implements DefinesHowToSort
@@ -34,35 +33,33 @@ final class Sort implements DefinesHowToSort
     public static function descendingBy(
         string $field,
         DefinesHowToSort $next = null
-    ) : DefinesHowToSort
-    {
+    ): DefinesHowToSort {
         return new Sort($field, false, $next ?: DoNotSort::atAll());
     }
 
     public static function ascendingBy(
         string $field,
         DefinesHowToSort $next = null
-    ) : DefinesHowToSort
-    {
+    ): DefinesHowToSort {
         return new Sort($field, true, $next ?: DoNotSort::atAll());
     }
 
-    public function field() : string
+    public function field(): string
     {
         return $this->field;
     }
 
-    public function next() : DefinesHowToSort
+    public function next(): DefinesHowToSort
     {
         return $this->next;
     }
 
-    public function ascends() : bool
+    public function ascends(): bool
     {
         return $this->ascends;
     }
 
-    public function isRequired() : bool
+    public function isRequired(): bool
     {
         return true;
     }

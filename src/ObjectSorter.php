@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting;
@@ -11,7 +10,7 @@ use function call_user_func;
  *
  * The object sorter accepts an optional map to translate fields to method names.
  *
- * @author Stratadox
+ * @author  Stratadox
  * @package Stratadox\Sorting
  */
 class ObjectSorter extends Sorter
@@ -28,7 +27,7 @@ class ObjectSorter extends Sorter
         return call_user_func([$element, $this->methodNameFor($field)]);
     }
 
-    private function methodNameFor(string $field)
+    private function methodNameFor(string $field): string
     {
         return $this->methodNameFor[$field] ?? $field;
     }

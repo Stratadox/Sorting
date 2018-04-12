@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Stub;
@@ -15,12 +14,12 @@ class Thing
         $this->bar = $bar;
     }
 
-    public function foo() : string
+    public function foo(): string
     {
         return $this->foo;
     }
 
-    public function getBar() : string
+    public function getBar(): string
     {
         return $this->bar;
     }

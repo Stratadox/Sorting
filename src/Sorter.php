@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting;
@@ -13,20 +12,20 @@ use Stratadox\Sorting\Contracts\SortsTheElements;
  *
  * Leaves retrieving the values to the concrete implementations.
  *
- * @author Stratadox
+ * @author  Stratadox
  * @package Stratadox\Sorting
  */
 abstract class Sorter implements SortsTheElements
 {
-    public function sortThe($elements, DefinesHowToSort $sorting) : array
+    public function sortThe($elements, DefinesHowToSort $sorting): array
     {
         usort($elements, $this->function($sorting));
         return $elements;
     }
 
-    private function function(DefinesHowToSort $sorting) : Closure
+    private function function (DefinesHowToSort $sorting): Closure
     {
-        return function($element1, $element2) use ($sorting) {
+        return function ($element1, $element2) use ($sorting) {
             return $this->doTheSorting($element1, $element2, $sorting);
         };
     }
@@ -35,8 +34,7 @@ abstract class Sorter implements SortsTheElements
         $element1,
         $element2,
         DefinesHowToSort $sorting
-    ) : int
-    {
+    ): int {
         $comparison = 0;
         while ($sorting->isRequired()) {
             $comparison = $this->compareElements($element1, $element2, $sorting);
@@ -52,8 +50,7 @@ abstract class Sorter implements SortsTheElements
         $element1,
         $element2,
         DefinesHowToSort $sorting
-    ) : int
-    {
+    ): int {
         if ($sorting->ascends()) {
             return $this->compareValues(
                 $this->valueFor($element1, $sorting->field()),
@@ -66,7 +63,7 @@ abstract class Sorter implements SortsTheElements
         );
     }
 
-    private function compareValues($value1, $value2) : int
+    private function compareValues($value1, $value2): int
     {
         return $value1 <=> $value2;
     }

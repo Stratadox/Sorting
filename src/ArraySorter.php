@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting;
@@ -9,7 +8,7 @@ namespace Stratadox\Sorting;
  *
  * Objects that implement ArrayAccess are considered arrays for this purpose.
  *
- * @author Stratadox
+ * @author  Stratadox
  * @package Stratadox\Sorting
  */
 class ArraySorter extends Sorter
