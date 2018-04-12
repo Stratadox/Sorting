@@ -19,7 +19,7 @@ before_script:
 script:
   - mkdir -p build/logs
   - vendor/bin/phpunit -c phpunit.xml --testdox
-  - ./infection.phar --min-msi=100 --min-covered-msi=100
+  - ./infection.phar
   - touch build/logs/infection-log.txt
   - cat build/logs/infection-log.txt
 
