@@ -1,13 +1,12 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
+use Stratadox\Sorting\Contracts\SortsTheElements;
 use Stratadox\Sorting\Sort;
-use Stratadox\Sorting\SortsTheElements;
 
 /**
  * @coversNothing because integration
