@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
+use function assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
@@ -76,9 +77,11 @@ class ArraySorter_sorts_arrays extends TestCase
      */
     protected function noSort(): DefinesHowToSort
     {
-        return $this->createConfiguredMock(DefinesHowToSort::class, [
+        $noSort = $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => false
         ]);
+        assert($noSort instanceof DefinesHowToSort);
+        return $noSort;
     }
 
     /**
@@ -87,11 +90,13 @@ class ArraySorter_sorts_arrays extends TestCase
      */
     protected function doSort(bool $ascending): DefinesHowToSort
     {
-        return $this->createConfiguredMock(DefinesHowToSort::class, [
+        $doSort = $this->createConfiguredMock(DefinesHowToSort::class, [
             'isRequired' => true,
             'field'      => 'index',
             'ascends'    => $ascending,
             'next'       => $this->noSort(),
         ]);
+        assert($doSort instanceof DefinesHowToSort);
+        return $doSort;
     }
 }
