@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
-use function assert;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Stratadox\Sorting\DoNotSort;
 use Stratadox\Sorting\NestedArraySorter;
 use Stratadox\Sorting\Contracts\DefinesHowToSort;
+use Stratadox\Sorting\Sort;
 
 /**
  * @covers \Stratadox\Sorting\NestedArraySorter
@@ -56,47 +56,19 @@ class NestedArraySorter_sorts_multidimensional_arrays extends TestCase
         return [
             'Not expecting any sorting' => [
                 $unsorted,
-                $this->noSort(),
+                DoNotSort::atAll(),
                 $unsorted
             ],
             'Ascending by index'        => [
                 $unsorted,
-                $this->doSort(true),
+                Sort::ascendingBy('result.index'),
                 $ascending
             ],
             'Descending by index'       => [
                 $unsorted,
-                $this->doSort(false),
+                Sort::descendingBy('result.index'),
                 $descending
             ],
         ];
-    }
-
-    /**
-     * @return MockObject|DefinesHowToSort
-     */
-    protected function noSort(): DefinesHowToSort
-    {
-        $noSort = $this->createConfiguredMock(DefinesHowToSort::class, [
-            'isRequired' => false
-        ]);
-        assert($noSort instanceof DefinesHowToSort);
-        return $noSort;
-    }
-
-    /**
-     * @param bool $ascending
-     * @return MockObject|DefinesHowToSort
-     */
-    protected function doSort(bool $ascending): DefinesHowToSort
-    {
-        $doSort = $this->createConfiguredMock(DefinesHowToSort::class, [
-            'isRequired' => true,
-            'field'      => 'result.index',
-            'ascends'    => $ascending,
-            'next'       => $this->noSort(),
-        ]);
-        assert($doSort instanceof DefinesHowToSort);
-        return $doSort;
     }
 }

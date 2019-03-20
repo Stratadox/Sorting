@@ -37,6 +37,6 @@ class DoNotSort_when_no_sorting_is_needed extends TestCase
     function DoNotSort_has_no_next_sorting_step()
     {
         $sorting = DoNotSort::atAll();
-        $this->assertInstanceOf(DoNotSort::class, $sorting->next());
+        $this->assertFalse($sorting->next()->isRequired());
     }
 }

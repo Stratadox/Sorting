@@ -9,6 +9,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\Contracts\DefinesHowToSort;
 use Stratadox\Sorting\ObjectSorter;
+use Stratadox\Sorting\Sort;
 use Stratadox\Sorting\Test\Stub\Thing;
 
 /**
@@ -27,7 +28,7 @@ class ObjectSorter_sorts_objects extends TestCase
             new Thing('a'),
             new Thing('b', '2'),
         ];
-        $sortedThings = $sorter->sortThe($things, $this->sortBy('foo'));
+        $sortedThings = $sorter->sortThe($things, Sort::ascendingBy('foo'));
         $this->assertEquals(
             [
                 new Thing('a'),
@@ -49,7 +50,7 @@ class ObjectSorter_sorts_objects extends TestCase
             new Thing('c', '1'),
             new Thing('d', '2'),
         ];
-        $sortedThings = $sorter->sortThe($things, $this->sortBy('bar'));
+        $sortedThings = $sorter->sortThe($things, Sort::ascendingBy('bar'));
         $this->assertEquals(
             [
                 new Thing('c', '1'),
@@ -59,23 +60,5 @@ class ObjectSorter_sorts_objects extends TestCase
             ],
             $sortedThings
         );
-    }
-
-    /**
-     * @param string $field
-     * @return MockObject|DefinesHowToSort
-     */
-    protected function sortBy(string $field): DefinesHowToSort
-    {
-        $sort = $this->createConfiguredMock(DefinesHowToSort::class, [
-            'isRequired' => true,
-            'field'      => $field,
-            'ascends'    => true,
-            'next'       => $this->createConfiguredMock(DefinesHowToSort::class, [
-                'isRequired' => false
-            ]),
-        ]);
-        assert($sort instanceof DefinesHowToSort);
-        return $sort;
     }
 }
