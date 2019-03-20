@@ -1,16 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Stratadox\Sorting\Test\Integration;
+namespace Stratadox\Sorting\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\Contracts\SortsTheElements;
 use Stratadox\Sorting\Sort;
 
-/**
- * @coversNothing because integration
- */
 class Sorting_arrays_of_arrays extends TestCase
 {
     /** @var SortsTheElements */

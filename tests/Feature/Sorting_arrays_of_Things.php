@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stratadox\Sorting\Test\Integration;
+namespace Stratadox\Sorting\Test\Feature;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\Contracts\SortsTheElements;
@@ -10,9 +10,6 @@ use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Sort;
 use Stratadox\Sorting\Test\Stub\Thing;
 
-/**
- * @coversNothing because integration
- */
 class Sorting_arrays_of_Things extends TestCase
 {
     /** @var SortsTheElements */
@@ -27,7 +24,9 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('1', 'one'),
             new Thing('0', 'zero'),
         ];
+
         $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('foo'));
+
         $this->assertEquals([
             new Thing('0', 'zero'),
             new Thing('1', 'one'),
@@ -46,9 +45,11 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('1', 'Qux'),
             new Thing('2', 'Bar'),
         ];
+
         $sorted = $this->sorter->sortThe($table,
             Sort::descendingBy('foo', Sort::ascendingBy('bar'))
         );
+
         $this->assertEquals([
             new Thing('4', 'Baz'),
             new Thing('2', 'Bar'),
@@ -68,7 +69,9 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('0', 'zero'),
             new Thing('1', 'another one'),
         ];
+
         $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('foo'));
+
         $this->assertEquals([
             new Thing('0', 'zero'),
             new Thing('1', 'one'),
