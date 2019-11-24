@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\Contracts\Sorter;
 use Stratadox\Sorting\Sort;
+use Stratadox\Sorting\Sorted;
 
 class Sorting_arrays_of_arrays extends TestCase
 {
@@ -76,6 +77,29 @@ class Sorting_arrays_of_arrays extends TestCase
     }
 
     /** @test */
+    function sort_descending_by_rating_and_then_ascending_by_name_as_array()
+    {
+        $table = [
+            ['rating' => 2, 'name' => 'Foo'],
+            ['rating' => 4, 'name' => 'Baz'],
+            ['rating' => 2, 'name' => 'Quz'],
+            ['rating' => 1, 'name' => 'Qux'],
+            ['rating' => 2, 'name' => 'Bar'],
+        ];
+        $sorted = $this->sorter->sortThe($table, Sorted::by([
+            'rating' => false,
+            'name' => true,
+        ]));
+        $this->assertSame([
+            ['rating' => 4, 'name' => 'Baz'],
+            ['rating' => 2, 'name' => 'Bar'],
+            ['rating' => 2, 'name' => 'Foo'],
+            ['rating' => 2, 'name' => 'Quz'],
+            ['rating' => 1, 'name' => 'Qux'],
+        ], $sorted);
+    }
+
+    /** @test */
     function sort_ascending_by_rating_and_then_descending_by_name()
     {
         $table = [
@@ -110,6 +134,29 @@ class Sorting_arrays_of_arrays extends TestCase
         $sorted = $this->sorter->sortThe($table,
             Sort::ascendingBy('rating')->andThenDescendingBy('name')
         );
+        $this->assertSame([
+            ['rating' => 1, 'name' => 'Qux'],
+            ['rating' => 2, 'name' => 'Quz'],
+            ['rating' => 2, 'name' => 'Foo'],
+            ['rating' => 2, 'name' => 'Bar'],
+            ['rating' => 4, 'name' => 'Baz'],
+        ], $sorted);
+    }
+
+    /** @test */
+    function sort_ascending_by_rating_and_then_descending_by_name_as_array()
+    {
+        $table = [
+            ['rating' => 2, 'name' => 'Foo'],
+            ['rating' => 4, 'name' => 'Baz'],
+            ['rating' => 2, 'name' => 'Quz'],
+            ['rating' => 1, 'name' => 'Qux'],
+            ['rating' => 2, 'name' => 'Bar'],
+        ];
+        $sorted = $this->sorter->sortThe($table, Sorted::by([
+            'rating' => true,
+            'name' => false,
+        ]));
         $this->assertSame([
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Quz'],

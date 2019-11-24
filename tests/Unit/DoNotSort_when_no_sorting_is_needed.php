@@ -6,6 +6,7 @@ namespace Stratadox\Sorting\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\DoNotSort;
+use Stratadox\Sorting\Sorted;
 
 /**
  * @covers \Stratadox\Sorting\DoNotSort
@@ -16,6 +17,13 @@ class DoNotSort_when_no_sorting_is_needed extends TestCase
     function sorting_is_not_required()
     {
         $sorting = DoNotSort::atAll();
+        $this->assertFalse($sorting->isRequired());
+    }
+
+    /** @test */
+    function sorting_is_not_required_as_array()
+    {
+        $sorting = Sorted::by([]);
         $this->assertFalse($sorting->isRequired());
     }
 

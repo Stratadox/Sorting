@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\Contracts\Sorter;
 use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Sort;
+use Stratadox\Sorting\Sorted;
 use Stratadox\Sorting\Test\Stub\Thing;
 
 class Sorting_arrays_of_Things extends TestCase
@@ -84,6 +85,31 @@ class Sorting_arrays_of_Things extends TestCase
     }
 
     /** @test */
+    function sort_descending_by_foo_and_then_ascending_by_bar_as_array()
+    {
+        $table = [
+            new Thing('2', 'Foo'),
+            new Thing('4', 'Baz'),
+            new Thing('2', 'Quz'),
+            new Thing('1', 'Qux'),
+            new Thing('2', 'Bar'),
+        ];
+
+        $sorted = $this->sorter->sortThe($table, Sorted::by([
+            'foo' => false,
+            'bar' => true,
+        ]));
+
+        $this->assertEquals([
+            new Thing('4', 'Baz'),
+            new Thing('2', 'Bar'),
+            new Thing('2', 'Foo'),
+            new Thing('2', 'Quz'),
+            new Thing('1', 'Qux'),
+        ], $sorted);
+    }
+
+    /** @test */
     function sort_ascending_by_foo_and_then_descending_by_bar()
     {
         $table = [
@@ -121,6 +147,31 @@ class Sorting_arrays_of_Things extends TestCase
         $sorted = $this->sorter->sortThe($table,
             Sort::ascendingBy('foo')->andThenDescendingBy('bar')
         );
+
+        $this->assertEquals([
+            new Thing('1', 'Qux'),
+            new Thing('2', 'Quz'),
+            new Thing('2', 'Foo'),
+            new Thing('2', 'Bar'),
+            new Thing('4', 'Baz'),
+        ], $sorted);
+    }
+
+    /** @test */
+    function sort_ascending_by_foo_and_then_descending_by_bar_as_array()
+    {
+        $table = [
+            new Thing('2', 'Foo'),
+            new Thing('4', 'Baz'),
+            new Thing('2', 'Quz'),
+            new Thing('1', 'Qux'),
+            new Thing('2', 'Bar'),
+        ];
+
+        $sorted = $this->sorter->sortThe($table, Sorted::by([
+            'foo' => true,
+            'bar' => false,
+        ]));
 
         $this->assertEquals([
             new Thing('1', 'Qux'),
