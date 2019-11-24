@@ -25,7 +25,7 @@ class ObjectSorter_sorts_objects extends TestCase
             new Thing('a'),
             new Thing('b', '2'),
         ];
-        $sortedThings = $sorter->sortThe($things, Sort::ascendingBy('foo'));
+        $sortedThings = $sorter->sort($things, Sort::ascendingBy('foo'));
         $this->assertEquals(
             [
                 new Thing('a'),
@@ -47,7 +47,7 @@ class ObjectSorter_sorts_objects extends TestCase
             new Thing('c', '1'),
             new Thing('d', '2'),
         ];
-        $sortedThings = $sorter->sortThe($things, Sort::ascendingBy('bar'));
+        $sortedThings = $sorter->sort($things, Sort::ascendingBy('bar'));
         $this->assertEquals(
             [
                 new Thing('c', '1'),

@@ -26,7 +26,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('0', 'zero'),
         ];
 
-        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('foo'));
+        $sorted = $this->sorter->sort($table, Sort::ascendingBy('foo'));
 
         $this->assertEquals([
             new Thing('0', 'zero'),
@@ -47,7 +47,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::descendingBy('foo', Sort::ascendingBy('bar'))
         );
 
@@ -71,7 +71,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::descendingBy('foo')->andThenAscendingBy('bar')
         );
 
@@ -95,7 +95,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table, Sorted::by([
+        $sorted = $this->sorter->sort($table, Sorted::by([
             'foo' => false,
             'bar' => true,
         ]));
@@ -120,7 +120,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::ascendingBy('foo', Sort::descendingBy('bar'))
         );
 
@@ -144,7 +144,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::ascendingBy('foo')->andThenDescendingBy('bar')
         );
 
@@ -168,7 +168,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('2', 'Bar'),
         ];
 
-        $sorted = $this->sorter->sortThe($table, Sorted::by([
+        $sorted = $this->sorter->sort($table, Sorted::by([
             'foo' => true,
             'bar' => false,
         ]));
@@ -193,7 +193,7 @@ class Sorting_arrays_of_Things extends TestCase
             new Thing('1', 'another one'),
         ];
 
-        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('foo'));
+        $sorted = $this->sorter->sort($table, Sort::ascendingBy('foo'));
 
         $this->assertEquals([
             new Thing('0', 'zero'),

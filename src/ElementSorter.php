@@ -17,7 +17,7 @@ use Stratadox\Sorting\Contracts\Sorting;
  */
 abstract class ElementSorter implements Sorter
 {
-    public function sortThe($elements, Sorting $sorting): array
+    public function sort(array $elements, Sorting $sorting): array
     {
         usort($elements, $this->functionFor($sorting));
         return $elements;

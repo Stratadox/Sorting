@@ -23,7 +23,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['index' => 1, 'value' => 'one'],
             ['index' => 0, 'value' => 'zero'],
         ];
-        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('index'));
+        $sorted = $this->sorter->sort($table, Sort::ascendingBy('index'));
         $this->assertSame([
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'one'],
@@ -42,7 +42,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::descendingBy('rating', Sort::ascendingBy('name'))
         );
         $this->assertSame([
@@ -64,7 +64,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::descendingBy('rating')->andThenAscendingBy('name')
         );
         $this->assertSame([
@@ -86,7 +86,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table, Sorted::by([
+        $sorted = $this->sorter->sort($table, Sorted::by([
             'rating' => false,
             'name' => true,
         ]));
@@ -109,7 +109,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::ascendingBy('rating', Sort::descendingBy('name'))
         );
         $this->assertSame([
@@ -131,7 +131,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::ascendingBy('rating')->andThenDescendingBy('name')
         );
         $this->assertSame([
@@ -153,7 +153,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['rating' => 1, 'name' => 'Qux'],
             ['rating' => 2, 'name' => 'Bar'],
         ];
-        $sorted = $this->sorter->sortThe($table, Sorted::by([
+        $sorted = $this->sorter->sort($table, Sorted::by([
             'rating' => true,
             'name' => false,
         ]));
@@ -176,7 +176,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['foo' => 1, 'bar' => 1, 'baz' => 4],
             ['foo' => 2, 'bar' => 1, 'baz' => 2],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::ascendingBy('foo')
                 ->andThenAscendingBy('bar')
                 ->andThenAscendingBy('baz')
@@ -200,7 +200,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['foo' => 2, 'bar' => 1, 'baz' => 9],
             ['foo' => 2, 'bar' => 1, 'baz' => 2],
         ];
-        $sorted = $this->sorter->sortThe($table,
+        $sorted = $this->sorter->sort($table,
             Sort::descendingBy('foo')
                 ->andThenDescendingBy('bar')
                 ->andThenDescendingBy('baz')
@@ -224,7 +224,7 @@ class Sorting_arrays_of_arrays extends TestCase
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'another one'],
         ];
-        $sorted = $this->sorter->sortThe($table, Sort::ascendingBy('index'));
+        $sorted = $this->sorter->sort($table, Sort::ascendingBy('index'));
         $this->assertSame([
             ['index' => 0, 'value' => 'zero'],
             ['index' => 1, 'value' => 'one'],

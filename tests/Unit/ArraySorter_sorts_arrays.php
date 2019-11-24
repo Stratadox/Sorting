@@ -29,7 +29,7 @@ class ArraySorter_sorts_arrays extends TestCase
         Sorting $usingThisDefinition,
         array $expectedResult
     ) {
-        $actual = (new ArraySorter)->sortThe($arrays, $usingThisDefinition);
+        $actual = (new ArraySorter)->sort($arrays, $usingThisDefinition);
         $this->assertEquals($expectedResult, $actual);
     }
 

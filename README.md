@@ -31,7 +31,7 @@ $table = [
 ];
 $sorter = new ArraySorter();
 
-$table = $sorter->sortThe($table, Sort::descendingBy('rating'));
+$table = $sorter->sort($table, Sort::descendingBy('rating'));
 
 assert($table === [
     ['name' => 'Foo', 'rating' => 3],
@@ -78,7 +78,7 @@ $objects = [
 ];
 $sorter = new ObjectSorter();
 
-$objects = $sorter->sortThe($objects, Sort::ascendingBy('rating'));
+$objects = $sorter->sort($objects, Sort::ascendingBy('rating'));
 
 assert($objects == [
     new SomeObject('Bar', 1),
@@ -128,7 +128,7 @@ $sorter = new ObjectSorter([
     'rating' => 'getTheRating',
 ]);
 
-$objects = $sorter->sortThe($objects, Sort::ascendingBy('rating'));
+$objects = $sorter->sort($objects, Sort::ascendingBy('rating'));
 
 assert($objects == [
     new SomeObject('Bar', 1),
@@ -152,7 +152,7 @@ $unsorted = [
     ['result' => ['index' => 2, 'label' => 'foo']],
 ];
 $sorter = new NestedArraySorter();
-$result = $sorter->sortThe($unsorted, Sort::ascendingBy('result.index'));
+$result = $sorter->sort($unsorted, Sort::ascendingBy('result.index'));
 
 assert($result === [
    ['result' => ['index' => 1, 'label' => 'baz']],
@@ -175,7 +175,7 @@ $table = [
     ['name' => 'Baz', 'rating' => 1],
 ];
 $sorter = new ArraySorter();
-$table = $sorter->sortThe($table, 
+$table = $sorter->sort($table, 
     Sort::descendingBy('rating', Sort::descendingBy('name'))
 );
 
@@ -200,7 +200,7 @@ $table = [
     ['name' => 'Baz', 'rating' => 1],
 ];
 $sorter = new ArraySorter();
-$table = $sorter->sortThe($table, 
+$table = $sorter->sort($table, 
     Sort::descendingBy('rating')->andThenDescendingBy('name')
 );
 
@@ -225,7 +225,7 @@ $table = [
     ['name' => 'Baz', 'rating' => 1],
 ];
 $sorter = new ArraySorter();
-$table = $sorter->sortThe($table, Sorted::by([
+$table = $sorter->sort($table, Sorted::by([
     'rating' => false,
     'name' => false,
 ]));
@@ -290,7 +290,7 @@ class SomeInMemoryRepository implements SomeRepository
 
     public function all(Sorting $sorting): array
     {
-        return $this->sorter->sortThe($this->entities, $sorting);
+        return $this->sorter->sort($this->entities, $sorting);
     }
 }
 

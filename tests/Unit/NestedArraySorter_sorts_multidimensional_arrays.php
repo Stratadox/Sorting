@@ -29,7 +29,7 @@ class NestedArraySorter_sorts_multidimensional_arrays extends TestCase
         Sorting $usingThisDefinition,
         array $expectedResult
     ) {
-        $actual = (new NestedArraySorter)->sortThe($arrays, $usingThisDefinition);
+        $actual = (new NestedArraySorter)->sort($arrays, $usingThisDefinition);
         $this->assertEquals($expectedResult, $actual);
     }
 
