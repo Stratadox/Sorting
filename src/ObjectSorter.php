@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
-use function call_user_func;
-
 /**
  * Sorts a collection of objects, accessing fields through public methods.
  *
@@ -24,7 +22,7 @@ class ObjectSorter extends Sorter
 
     protected function valueFor($element, string $field)
     {
-        return call_user_func([$element, $this->methodNameFor($field)]);
+        return $element->{$this->methodNameFor($field)}();
     }
 
     private function methodNameFor(string $field): string
