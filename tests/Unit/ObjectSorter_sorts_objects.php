@@ -11,7 +11,7 @@ use Stratadox\Sorting\Test\Stub\Thing;
 
 /**
  * @covers \Stratadox\Sorting\ObjectSorter
- * @covers \Stratadox\Sorting\Sorter
+ * @covers \Stratadox\Sorting\ElementSorter
  */
 class ObjectSorter_sorts_objects extends TestCase
 {

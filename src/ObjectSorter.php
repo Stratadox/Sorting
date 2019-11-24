@@ -11,7 +11,7 @@ namespace Stratadox\Sorting;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-class ObjectSorter extends Sorter
+class ObjectSorter extends ElementSorter
 {
     private $methodNameFor;
 

@@ -5,28 +5,28 @@ declare(strict_types=1);
 namespace Stratadox\Sorting\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Stratadox\Sorting\Contracts\Sorting;
 use Stratadox\Sorting\DoNotSort;
 use Stratadox\Sorting\NestedArraySorter;
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
 use Stratadox\Sorting\Sort;
 
 /**
  * @covers \Stratadox\Sorting\NestedArraySorter
- * @covers \Stratadox\Sorting\Sorter
+ * @covers \Stratadox\Sorting\ElementSorter
  */
 class NestedArraySorter_sorts_multidimensional_arrays extends TestCase
 {
     /**
-     * @param array[]          $arrays
-     * @param DefinesHowToSort $usingThisDefinition
-     * @param array[]          $expectedResult
+     * @param array[] $arrays
+     * @param Sorting $usingThisDefinition
+     * @param array[] $expectedResult
      *
      * @test
      * @dataProvider sortingData
      */
     function sorting_the_arrays(
         array $arrays,
-        DefinesHowToSort $usingThisDefinition,
+        Sorting $usingThisDefinition,
         array $expectedResult
     ) {
         $actual = (new NestedArraySorter)->sortThe($arrays, $usingThisDefinition);

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\Sorting;
 
 /**
  * Do not sort at all.
@@ -13,13 +13,13 @@ use Stratadox\Sorting\Contracts\DefinesHowToSort;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-final class DoNotSort implements DefinesHowToSort
+final class DoNotSort implements Sorting
 {
     private function __construct()
     {
     }
 
-    public static function atAll(): DefinesHowToSort
+    public static function atAll(): Sorting
     {
         return new DoNotSort;
     }
@@ -29,7 +29,7 @@ final class DoNotSort implements DefinesHowToSort
         return '';
     }
 
-    public function next(): DefinesHowToSort
+    public function next(): Sorting
     {
         return $this;
     }

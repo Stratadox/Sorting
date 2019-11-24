@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=7.0",
-        "stratadox/sorting-contracts": "^0.1.0"
+        "stratadox/sorting-contracts": "^0.2.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.1",

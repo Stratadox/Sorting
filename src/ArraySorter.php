@@ -11,7 +11,7 @@ namespace Stratadox\Sorting;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-class ArraySorter extends Sorter
+class ArraySorter extends ElementSorter
 {
     protected function valueFor($element, string $field)
     {

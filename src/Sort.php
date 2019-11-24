@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting;
 
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\ExtensibleSorting;
+use Stratadox\Sorting\Contracts\Sorting;
 
 /**
  * Sort according to this definition.
@@ -14,7 +15,7 @@ use Stratadox\Sorting\Contracts\DefinesHowToSort;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-final class Sort implements DefinesHowToSort
+final class Sort implements ExtensibleSorting
 {
     private $field;
     private $ascends;
@@ -23,7 +24,7 @@ final class Sort implements DefinesHowToSort
     private function __construct(
         string $field,
         bool $ascends,
-        DefinesHowToSort $next
+        Sorting $next
     ) {
         $this->field = $field;
         $this->ascends = $ascends;
@@ -32,15 +33,15 @@ final class Sort implements DefinesHowToSort
 
     public static function descendingBy(
         string $field,
-        DefinesHowToSort $next = null
-    ): DefinesHowToSort {
+        Sorting $next = null
+    ): ExtensibleSorting {
         return new Sort($field, false, $next ?: DoNotSort::atAll());
     }
 
     public static function ascendingBy(
         string $field,
-        DefinesHowToSort $next = null
-    ): DefinesHowToSort {
+        Sorting $next = null
+    ): ExtensibleSorting {
         return new Sort($field, true, $next ?: DoNotSort::atAll());
     }
 
@@ -49,7 +50,7 @@ final class Sort implements DefinesHowToSort
         return $this->field;
     }
 
-    public function next(): DefinesHowToSort
+    public function next(): Sorting
     {
         return $this->next;
     }
@@ -62,5 +63,15 @@ final class Sort implements DefinesHowToSort
     public function isRequired(): bool
     {
         return true;
+    }
+
+    public function andThenAscendingBy(string $field): ExtensibleSorting
+    {
+        return new Sort($this->field, $this->ascends, Sort::ascendingBy($field));
+    }
+
+    public function andThenDescendingBy(string $field): ExtensibleSorting
+    {
+        return new Sort($this->field, $this->ascends, Sort::descendingBy($field));
     }
 }

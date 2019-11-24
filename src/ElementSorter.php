@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Stratadox\Sorting;
 
 use Closure;
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
-use Stratadox\Sorting\Contracts\SortsTheElements;
+use Stratadox\Sorting\Contracts\Sorter;
+use Stratadox\Sorting\Contracts\Sorting;
 
 /**
  * Sorter logic for comparing multiple values according to the sort definition.
@@ -15,15 +15,15 @@ use Stratadox\Sorting\Contracts\SortsTheElements;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-abstract class Sorter implements SortsTheElements
+abstract class ElementSorter implements Sorter
 {
-    public function sortThe($elements, DefinesHowToSort $sorting): array
+    public function sortThe($elements, Sorting $sorting): array
     {
         usort($elements, $this->functionFor($sorting));
         return $elements;
     }
 
-    private function functionFor(DefinesHowToSort $sorting): Closure
+    private function functionFor(Sorting $sorting): Closure
     {
         return function ($element1, $element2) use ($sorting) {
             return $this->doTheSorting($element1, $element2, $sorting);
@@ -33,7 +33,7 @@ abstract class Sorter implements SortsTheElements
     private function doTheSorting(
         $element1,
         $element2,
-        DefinesHowToSort $sorting
+        Sorting $sorting
     ): int {
         $comparison = 0;
         while ($sorting->isRequired()) {
@@ -53,7 +53,7 @@ abstract class Sorter implements SortsTheElements
     private function compareElements(
         $element1,
         $element2,
-        DefinesHowToSort $sorting
+        Sorting $sorting
     ): int {
         if ($sorting->ascends()) {
             return $this->compareValues(

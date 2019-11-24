@@ -13,7 +13,7 @@ use function explode;
  * @author  Stratadox
  * @package Stratadox\Sorting
  */
-class NestedArraySorter extends Sorter
+class NestedArraySorter extends ElementSorter
 {
     protected function valueFor($element, string $field)
     {

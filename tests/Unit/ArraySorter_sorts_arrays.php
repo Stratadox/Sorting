@@ -6,27 +6,27 @@ namespace Stratadox\Sorting\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
+use Stratadox\Sorting\Contracts\Sorting;
 use Stratadox\Sorting\DoNotSort;
 use Stratadox\Sorting\Sort;
 
 /**
  * @covers \Stratadox\Sorting\ArraySorter
- * @covers \Stratadox\Sorting\Sorter
+ * @covers \Stratadox\Sorting\ElementSorter
  */
 class ArraySorter_sorts_arrays extends TestCase
 {
     /**
-     * @param array[]          $arrays
-     * @param DefinesHowToSort $usingThisDefinition
-     * @param array[]          $expectedResult
+     * @param array[] $arrays
+     * @param Sorting $usingThisDefinition
+     * @param array[] $expectedResult
      *
      * @test
      * @dataProvider sortingData
      */
     function sorting_the_arrays(
         array $arrays,
-        DefinesHowToSort $usingThisDefinition,
+        Sorting $usingThisDefinition,
         array $expectedResult
     ) {
         $actual = (new ArraySorter)->sortThe($arrays, $usingThisDefinition);
