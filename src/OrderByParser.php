@@ -2,6 +2,8 @@
 
 namespace Stratadox\Sorting;
 
+use function array_key_exists;
+use InvalidArgumentException;
 use function sprintf;
 use Stratadox\Sorting\Contracts\Sorting;
 
@@ -19,6 +21,11 @@ class OrderByParser
     {
         if (!$sorting->isRequired()) {
             return '';
+        }
+        if (!array_key_exists($sorting->field(), $this->sortableFields)) {
+            throw new InvalidArgumentException(
+                $sorting->field() . ' is not a sortable field.'
+            );
         }
         return sprintf(
             'ORDER BY %s %s',

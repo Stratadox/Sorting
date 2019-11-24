@@ -2,6 +2,7 @@
 
 namespace Stratadox\Sorting\Test\Unit;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\DoNotSort;
 use Stratadox\Sorting\OrderByParser;
@@ -47,5 +48,16 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
             'ORDER BY table.foo ASC',
             $orderBy->parse(Sort::ascendingBy('foo'))
         );
+    }
+
+    /** @test */
+    function not_building_order_by_statements_for_non_whitelisted_fields()
+    {
+        $orderBy = new OrderByParser(['name' => 'name']);
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('foo is not a sortable field');
+
+        $orderBy->parse(Sort::ascendingBy('foo'));
     }
 }
