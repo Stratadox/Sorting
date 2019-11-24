@@ -249,3 +249,74 @@ A sorting definition, for instance `Sort::ascendingBy('name')`, can be applied
 to a collection of associative arrays or to a collection of objects - the client 
 that asks for the sorting does not need to know the internals of the elements 
 that are to be sorted.
+
+When designing an interface that allows for sorting, a method might accept a 
+Sorting definition, eg. `public function getSorted(Sorting $definition): array`.
+Implementors of this interface may use any sorter they see fit, so long as they 
+produce the expected results.
+
+Some implementations may not even use any sorter at all, but instead take the 
+sorting definition and produce a sorted list of results in a different way.
+An example of such usage might be a repository with an in-memory and an sql 
+implementation:
+
+```php
+<?php
+use Stratadox\Sorting\Contracts\Sorting;
+use Stratadox\Sorting\ObjectSorter;
+use Stratadox\Sorting\OrderByParser;
+
+class SomeEntity
+{
+    // ...
+}
+
+interface SomeRepository
+{
+    /** @return SomeEntity[] */
+    public function all(Sorting $sorting): array;
+}
+
+class SomeInMemoryRepository implements SomeRepository
+{
+    private $sorter;
+    private $entities;
+
+    public function __construct(SomeEntity ...$entities)
+    {
+        $this->sorter = new ObjectSorter();
+        $this->entities = $entities;
+    }
+
+    public function all(Sorting $sorting): array
+    {
+        return $this->sorter->sortThe($this->entities, $sorting);
+    }
+}
+
+class SomeDatabaseRepository implements SomeRepository
+{
+    private $connection;
+    private $orderByParser;
+    private $deserializer;
+
+    public function __construct(PDO $connection, DeserializesObjects $deserializer)
+    {
+        $this->connection = $connection;
+        $this->orderByParser = OrderByParser::allowing('foo', 'bar');
+        $this->deserializer = $deserializer;
+    }
+
+    public function all(Sorting $sorting): array
+    {
+        $query = $this->connection->query(
+            'SELECT * FROM some_table ' . $this->orderByParser->parse($sorting)
+        );
+        $entities = [];
+        foreach ($query->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $entities[] = $this->deserializer->from($row);
+        }
+        return $entities;
+    }
+}
+```
