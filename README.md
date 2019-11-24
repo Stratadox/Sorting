@@ -236,3 +236,16 @@ assert($table == [
     ['name' => 'Bar', 'rating' => 1],
 ]);
 ```
+
+## Structure
+The sorting package consists of two core concepts:
+- the sorting definition, which is used to declare the sorting requirements, and
+- the sorter, which sorts the elements according to the given definition
+
+This separation is maintained in order to decouple the intention of sorting from 
+the data structure that is being sorted.
+
+A sorting definition, for instance `Sort::ascendingBy('name')`, can be applied 
+to a collection of associative arrays or to a collection of objects - the client 
+that asks for the sorting does not need to know the internals of the elements 
+that are to be sorted.
