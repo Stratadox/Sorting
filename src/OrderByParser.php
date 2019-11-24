@@ -2,6 +2,7 @@
 
 namespace Stratadox\Sorting;
 
+use function array_combine;
 use function array_key_exists;
 use function implode;
 use InvalidArgumentException;
@@ -13,9 +14,19 @@ class OrderByParser
     /** @var array */
     private $sortableFields;
 
-    public function __construct(array $sortableFields = [])
+    private function __construct(array $sortableFields = [])
     {
         $this->sortableFields = $sortableFields;
+    }
+
+    public static function mappedAs(array $sortableFieldsMap): self
+    {
+        return new self($sortableFieldsMap);
+    }
+
+    public static function allowing(string ...$sortableFields): self
+    {
+        return new self(array_combine($sortableFields, $sortableFields));
     }
 
     public function parse(Sorting $sorting): string

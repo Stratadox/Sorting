@@ -16,14 +16,14 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function no_order_by_statement_if_the_sorting_definition_is_empty()
     {
-        $orderBy = new OrderByParser();
+        $orderBy = OrderByParser::mappedAs([]);
         $this->assertEquals('', $orderBy->parse(DoNotSort::atAll()));
     }
 
     /** @test */
     function building_an_order_by_name_asc_statement()
     {
-        $orderBy = new OrderByParser(['name' => 'name']);
+        $orderBy = OrderByParser::allowing('name');
         $this->assertEquals(
             'ORDER BY name ASC',
             $orderBy->parse(Sort::ascendingBy('name'))
@@ -33,7 +33,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function building_an_order_by_name_desc_statement()
     {
-        $orderBy = new OrderByParser(['name' => 'name']);
+        $orderBy = OrderByParser::allowing('name');
         $this->assertEquals(
             'ORDER BY name DESC',
             $orderBy->parse(Sort::descendingBy('name'))
@@ -43,7 +43,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function building_an_order_by_table_dot_foo_asc_statement()
     {
-        $orderBy = new OrderByParser(['foo' => 'table.foo']);
+        $orderBy = OrderByParser::mappedAs(['foo' => 'table.foo']);
         $this->assertEquals(
             'ORDER BY table.foo ASC',
             $orderBy->parse(Sort::ascendingBy('foo'))
@@ -53,7 +53,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function not_building_order_by_statements_for_non_whitelisted_fields()
     {
-        $orderBy = new OrderByParser(['name' => 'name']);
+        $orderBy = OrderByParser::allowing('name');
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('foo is not a sortable field');
@@ -64,7 +64,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function ordering_by_foo_desc_and_bar_asc()
     {
-        $orderBy = new OrderByParser(['foo' => 'x.foo', 'bar' => 'y.bar']);
+        $orderBy = OrderByParser::mappedAs(['foo' => 'x.foo', 'bar' => 'y.bar']);
         $this->assertEquals(
             'ORDER BY x.foo DESC, y.bar ASC',
             $orderBy->parse(Sort::descendingBy('foo')->andThenAscendingBy('bar'))
@@ -74,7 +74,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function ordering_by_foo_asc_and_bar_asc()
     {
-        $orderBy = new OrderByParser(['foo' => 'x.foo', 'bar' => 'y.bar']);
+        $orderBy = OrderByParser::mappedAs(['foo' => 'x.foo', 'bar' => 'y.bar']);
         $this->assertEquals(
             'ORDER BY x.foo ASC, y.bar ASC',
             $orderBy->parse(Sort::ascendingBy('foo')->andThenAscendingBy('bar'))
@@ -84,7 +84,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     /** @test */
     function ordering_by_foo_asc_and_bar_desc_and_baz_asc()
     {
-        $orderBy = new OrderByParser([
+        $orderBy = OrderByParser::mappedAs([
             'foo' => 'x.foo',
             'bar' => 'y.bar',
             'baz' => 'z.baz',
