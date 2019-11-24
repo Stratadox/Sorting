@@ -60,4 +60,42 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
 
         $orderBy->parse(Sort::ascendingBy('foo'));
     }
+
+    /** @test */
+    function ordering_by_foo_desc_and_bar_asc()
+    {
+        $orderBy = new OrderByParser(['foo' => 'x.foo', 'bar' => 'y.bar']);
+        $this->assertEquals(
+            'ORDER BY x.foo DESC, y.bar ASC',
+            $orderBy->parse(Sort::descendingBy('foo')->andThenAscendingBy('bar'))
+        );
+    }
+
+    /** @test */
+    function ordering_by_foo_asc_and_bar_asc()
+    {
+        $orderBy = new OrderByParser(['foo' => 'x.foo', 'bar' => 'y.bar']);
+        $this->assertEquals(
+            'ORDER BY x.foo ASC, y.bar ASC',
+            $orderBy->parse(Sort::ascendingBy('foo')->andThenAscendingBy('bar'))
+        );
+    }
+
+    /** @test */
+    function ordering_by_foo_asc_and_bar_desc_and_baz_asc()
+    {
+        $orderBy = new OrderByParser([
+            'foo' => 'x.foo',
+            'bar' => 'y.bar',
+            'baz' => 'z.baz',
+        ]);
+        $this->assertEquals(
+            'ORDER BY x.foo ASC, y.bar DESC, z.baz ASC',
+            $orderBy->parse(
+                Sort::ascendingBy('foo')
+                    ->andThenDescendingBy('bar')
+                    ->andThenAscendingBy('baz')
+            )
+        );
+    }
 }
