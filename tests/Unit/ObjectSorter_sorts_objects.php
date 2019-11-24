@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Stratadox\Sorting\Test\Unit;
 
-use function assert;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Stratadox\Sorting\Contracts\DefinesHowToSort;
 use Stratadox\Sorting\ObjectSorter;
 use Stratadox\Sorting\Sort;
 use Stratadox\Sorting\Test\Stub\Thing;
