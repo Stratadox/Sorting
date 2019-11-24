@@ -67,11 +67,25 @@ final class Sort implements ExtensibleSorting
 
     public function andThenAscendingBy(string $field): ExtensibleSorting
     {
-        return new Sort($this->field, $this->ascends, Sort::ascendingBy($field));
+        // @todo this skips custom non-null Sorting definitions, fix somehow
+        return new Sort(
+            $this->field,
+            $this->ascends,
+            $this->next instanceof ExtensibleSorting ?
+                $this->next->andThenAscendingBy($field) :
+                Sort::ascendingBy($field)
+        );
     }
 
     public function andThenDescendingBy(string $field): ExtensibleSorting
     {
-        return new Sort($this->field, $this->ascends, Sort::descendingBy($field));
+        // @todo this skips custom non-null Sorting definitions, fix somehow
+        return new Sort(
+            $this->field,
+            $this->ascends,
+            $this->next instanceof ExtensibleSorting ?
+                $this->next->andThenDescendingBy($field) :
+                Sort::descendingBy($field)
+        );
     }
 }

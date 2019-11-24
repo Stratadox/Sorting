@@ -167,6 +167,54 @@ class Sorting_arrays_of_arrays extends TestCase
     }
 
     /** @test */
+    function sort_ascending_by_foo_and_then_by_bar_and_then_by_baz()
+    {
+        $table = [
+            ['foo' => 1, 'bar' => 2, 'baz' => 4],
+            ['foo' => 2, 'bar' => 1, 'baz' => 9],
+            ['foo' => 2, 'bar' => 1, 'baz' => 1],
+            ['foo' => 1, 'bar' => 1, 'baz' => 4],
+            ['foo' => 2, 'bar' => 1, 'baz' => 2],
+        ];
+        $sorted = $this->sorter->sortThe($table,
+            Sort::ascendingBy('foo')
+                ->andThenAscendingBy('bar')
+                ->andThenAscendingBy('baz')
+        );
+        $this->assertSame([
+            ['foo' => 1, 'bar' => 1, 'baz' => 4],
+            ['foo' => 1, 'bar' => 2, 'baz' => 4],
+            ['foo' => 2, 'bar' => 1, 'baz' => 1],
+            ['foo' => 2, 'bar' => 1, 'baz' => 2],
+            ['foo' => 2, 'bar' => 1, 'baz' => 9],
+        ], $sorted);
+    }
+
+    /** @test */
+    function sort_descending_by_foo_and_then_by_bar_and_then_by_baz()
+    {
+        $table = [
+            ['foo' => 2, 'bar' => 1, 'baz' => 1],
+            ['foo' => 1, 'bar' => 1, 'baz' => 4],
+            ['foo' => 1, 'bar' => 2, 'baz' => 4],
+            ['foo' => 2, 'bar' => 1, 'baz' => 9],
+            ['foo' => 2, 'bar' => 1, 'baz' => 2],
+        ];
+        $sorted = $this->sorter->sortThe($table,
+            Sort::descendingBy('foo')
+                ->andThenDescendingBy('bar')
+                ->andThenDescendingBy('baz')
+        );
+        $this->assertSame([
+            ['foo' => 2, 'bar' => 1, 'baz' => 9],
+            ['foo' => 2, 'bar' => 1, 'baz' => 2],
+            ['foo' => 2, 'bar' => 1, 'baz' => 1],
+            ['foo' => 1, 'bar' => 2, 'baz' => 4],
+            ['foo' => 1, 'bar' => 1, 'baz' => 4],
+        ], $sorted);
+    }
+
+    /** @test */
     function sorting_leaves_undecided_entries_in_their_original_order()
     {
         $table = [
