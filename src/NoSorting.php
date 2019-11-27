@@ -6,25 +6,22 @@ namespace Stratadox\Sorting;
 use Stratadox\Sorting\Contracts\Sorting;
 
 /**
- * Do not sort at all.
+ * No sorting required.
  *
  * Null object, used to define that no sorting should take place.
  *
  * @author  Stratadox
  * @package Stratadox\Sorting
- * @deprecated use NoSorting::needed() instead.
- * @see NoSorting
  */
-final class DoNotSort implements Sorting
+final class NoSorting implements Sorting
 {
     private function __construct()
     {
     }
 
-    /** @deprecated */
-    public static function atAll(): Sorting
+    public static function needed(): Sorting
     {
-        return new DoNotSort;
+        return new NoSorting;
     }
 
     public function field(): string

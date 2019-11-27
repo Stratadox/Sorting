@@ -35,14 +35,14 @@ final class Sort implements ExtensibleSorting
         string $field,
         Sorting $next = null
     ): ExtensibleSorting {
-        return new Sort($field, false, $next ?: DoNotSort::atAll());
+        return new Sort($field, false, $next ?: NoSorting::needed());
     }
 
     public static function ascendingBy(
         string $field,
         Sorting $next = null
     ): ExtensibleSorting {
-        return new Sort($field, true, $next ?: DoNotSort::atAll());
+        return new Sort($field, true, $next ?: NoSorting::needed());
     }
 
     public function field(): string

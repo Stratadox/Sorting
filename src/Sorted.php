@@ -21,6 +21,6 @@ final class Sorted
                     $sorting->andThenDescendingBy($field);
             }
         }
-        return $sorting ?: DoNotSort::atAll();
+        return $sorting ?: NoSorting::needed();
     }
 }

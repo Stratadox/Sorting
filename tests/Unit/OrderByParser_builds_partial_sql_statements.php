@@ -4,7 +4,7 @@ namespace Stratadox\Sorting\Test\Unit;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use Stratadox\Sorting\DoNotSort;
+use Stratadox\Sorting\NoSorting;
 use Stratadox\Sorting\OrderByParser;
 use Stratadox\Sorting\Sort;
 
@@ -17,7 +17,7 @@ class OrderByParser_builds_partial_sql_statements extends TestCase
     function no_order_by_statement_if_the_sorting_definition_is_empty()
     {
         $orderBy = OrderByParser::mappedAs([]);
-        $this->assertEquals('', $orderBy->parse(DoNotSort::atAll()));
+        $this->assertEquals('', $orderBy->parse(NoSorting::needed()));
     }
 
     /** @test */

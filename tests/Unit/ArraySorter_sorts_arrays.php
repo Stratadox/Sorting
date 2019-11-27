@@ -7,7 +7,7 @@ namespace Stratadox\Sorting\Test\Unit;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Sorting\ArraySorter;
 use Stratadox\Sorting\Contracts\Sorting;
-use Stratadox\Sorting\DoNotSort;
+use Stratadox\Sorting\NoSorting;
 use Stratadox\Sorting\Sort;
 
 /**
@@ -56,7 +56,7 @@ class ArraySorter_sorts_arrays extends TestCase
         return [
             'Not expecting any sorting' => [
                 $unsorted,
-                DoNotSort::atAll(),
+                NoSorting::needed(),
                 $unsorted
             ],
             'Ascending by index'        => [
